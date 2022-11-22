@@ -2,6 +2,7 @@ const { response } = require('express');
 
 // Create user
 const crearUsuario = (req, res = response ) => {   
+    
    
     const { email, name, password } = req.body;
     return res.json({
