@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('./db/config');
 require('dotenv').config();
 
 // entra en el archivo .env
@@ -10,6 +11,9 @@ const _PUERTO = process.env.PORT;
 
 // Crear el servidor/aplicacion de express
 const app = express();
+
+// Base de datos conection
+dbConnection();
 
 // Directorio público con un middleware con .use
 app.use( express.static('public'));
