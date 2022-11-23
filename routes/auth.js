@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { crearUsuario, loginUsuario, revalidarToken  } = require('../controllers/auth');
-const { validarCampos } = require('../middlewares/validar-campos')
+const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
@@ -24,7 +25,7 @@ router.post('/', [
 ], loginUsuario );
 
 // validar y revalidar token
-router.get('/renew', revalidarToken );
+router.get('/renew', validarJWT, revalidarToken );
 
 // Es la forma de externalizar modulos en Node similar a export class en angular
 module.exports = router

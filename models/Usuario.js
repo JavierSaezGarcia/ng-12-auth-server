@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 
 const UsuarioSchema = Schema({
@@ -18,4 +18,4 @@ const UsuarioSchema = Schema({
 });
 
 // Para exportar fuera el modelo es un poco diferente ya que model() viene de mongoose
-module.exports = model('Usuario', UsuarioSchema)
+module.exports = model('Usuario', UsuarioSchema);
