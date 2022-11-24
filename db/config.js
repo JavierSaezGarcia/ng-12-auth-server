@@ -1,3 +1,5 @@
+
+
 const mongoose = require('mongoose');
 
 // conexion BD 
@@ -13,12 +15,9 @@ const dbConnection = async() => {
     catch (error){
         console.log(error);
         throw new Error('Error a la hora de inicializar DB');
-    }
- 
-    
+    }    
  
 }
-
 module.exports = {
     dbConnection
 }

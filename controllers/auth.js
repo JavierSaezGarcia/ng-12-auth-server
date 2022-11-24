@@ -1,15 +1,15 @@
+
+
 const { response } = require('express');
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcryptjs');
 const { generarJWT } = require('../helpers/jwt');
 
 // Create user
-const crearUsuario = async(req, res = response ) => {       
-   
+const crearUsuario = async(req, res = response ) => {         
     const { email, name, password } = req.body;
 
-    try {    
-
+    try {   
         // VERIFICAR EL EMAIL
         let usuario = await Usuario.findOne({ email: email });
         // Evaluar la sentencia anterior
@@ -29,16 +29,13 @@ const crearUsuario = async(req, res = response ) => {
         // generamos letras y numeros aleatorios con salt sync
         const salt = bcrypt.genSaltSync(10); // el numero son las vueltas que da generando
         // Hacemos el hash con hasSync del password
-        dbUser.password = bcrypt.hashSync( password, salt )
-
+        dbUser.password = bcrypt.hashSync( password, salt );
 
         // Generar el Json Web Token JWT
         const token = await generarJWT(dbUser.id, name);
 
-
         // Crear usuario de DB
         await dbUser.save();
-
 
         // Generar respuesta exitosa
         // Status 201 es que se creo un  nuevo registro
@@ -57,13 +54,9 @@ const crearUsuario = async(req, res = response ) => {
     
     }
 }
-
-
-
 const loginUsuario = async(req, res = response) => {
 
-    const { email, password } = req.body;   
-    
+    const { email, password } = req.body;     
     try {
         const dbUser = await Usuario.findOne({ email });
 
@@ -73,7 +66,6 @@ const loginUsuario = async(req, res = response) => {
                 msg: "El correo no existe"
             });
         }
-
         // Confirmar si el password hace match
         const validPassword = bcrypt.compareSync( password, dbUser.password);
 
@@ -94,7 +86,6 @@ const loginUsuario = async(req, res = response) => {
             token
 
         })
-
 
     } catch (error) {
         console.log(error); 
@@ -119,7 +110,6 @@ const revalidarToken = async(req, res = response) => {
         token
     })
 }
-
 module.exports = {
     crearUsuario,
     loginUsuario,

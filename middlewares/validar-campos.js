@@ -1,3 +1,5 @@
+
+
 const { response } = require('express');
 const { validationResult } = require('express-validator');
 // Un middleware no es más que una simple función que recibe como argumentos la request la response lo que o
