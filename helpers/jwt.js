@@ -23,11 +23,11 @@ const generarJWT = ( uid, name ) => {
 
                 if ( err ) {
                     // TODO MAL
-                    console.log('No se pudo generar el jwtoken', err);
+                    // console.log('No se pudo generar el jwtoken', err);
                     reject(err);
                 } else {
                     // TODO BIEN
-                    console.log('El token se ha generado correctamente',token);
+                    // console.log('El token se ha generado correctamente',token);
                     resolve( token )
                 }
         });
