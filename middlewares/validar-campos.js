@@ -15,9 +15,8 @@ const validarCampos = (req, res = response, next ) => {
             errors: errors.mapped()
         });
     }
-
-    next();
-        
+    // el next sirve para continuar con la siguiente validacion
+    next();        
     
 }
 

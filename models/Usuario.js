@@ -19,3 +19,4 @@ const UsuarioSchema = Schema({
 });
 
 // Para exportar fuera el modelo es un poco diferente ya que model() viene de mongoose
+module.exports = model('Usuario', UsuarioSchema );

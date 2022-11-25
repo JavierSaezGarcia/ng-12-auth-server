@@ -6,11 +6,11 @@ const { crearUsuario, loginUsuario, revalidarToken  } = require('../controllers/
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
-const router = Router();
+const router = Router(); // Es una funcion que se llama Router pero no tiene nada que ver con el Router de lazy load
 
 // Crear un nuevo usuario: primero el path, segundo los middlewares y tercero el controlador de esta ruta
 // En caso de solo haber el path y otro elemento sera el controlador
-// Un middleware es una funcion normal y corriente
+// Un middleware es una funcion normal y corriente. Cada check es un middleware y se leen de forma secuencial
 router.post('/new', [
     check('name', 'El nombre es obligatorio').not().isEmpty(),
     check('email', 'El email es obligatorio').isEmail(),
@@ -28,6 +28,7 @@ router.post('/', [
 
 // validar y revalidar token
 router.get('/renew', validarJWT, revalidarToken );
+// router.get('/renew',  revalidarToken );
 
 // Es la forma de externalizar modulos en Node similar a export class en angular
 module.exports = router
