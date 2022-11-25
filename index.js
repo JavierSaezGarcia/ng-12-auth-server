@@ -16,6 +16,7 @@ STATUS ERROR 509: indica que se ha superado el límite de ancho de banda disponi
 const express = require('express');
 const cors = require('cors');
 const { dbConnection } = require('./db/config');
+const path = require('path');
 require('dotenv').config(); // llama al archivo .env para leer el contenido
 
 // entra en el archivo .env
@@ -42,6 +43,12 @@ app.use( express.json() );
 
 // Rutas y middleware (.use('path base', require('./ruta de los path de auth.js)))
 app.use( '/api/auth', require('./routes/auth') );
+
+// Manejar demás rutas en vez de usar useHash a true lo hacemos con node
+app.get( '*', (req, res ) => {
+    res.sendFile( path.resolve( __dirname, 'public/index.html'));
+});
+
 
 
 // // para ver las variables de entorno .env que hayamos modificado hay que bajasr el 
